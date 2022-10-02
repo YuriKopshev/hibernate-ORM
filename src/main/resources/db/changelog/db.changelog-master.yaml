@@ -1,0 +1,9 @@
+databaseChangeLog:
+ - include:
+      file: db/changelog/migrations/schema_001.sql
+      relativeToChangeFile: true
+
+ - include:
+      file: db/changelog/migrations/schema_002.sql
+      relativeToChangeFile: true
+
