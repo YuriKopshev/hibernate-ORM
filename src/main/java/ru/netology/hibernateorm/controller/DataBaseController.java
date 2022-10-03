@@ -1,12 +1,11 @@
 package ru.netology.hibernateorm.controller;
 
-import jdk.jfr.Percentage;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import ru.netology.hibernateorm.model.Persons;
-import ru.netology.hibernateorm.repository.PersonsRepo;
+import ru.netology.hibernateorm.service.PersonService;
 
 import java.util.List;
 
@@ -14,14 +13,15 @@ import java.util.List;
 @RequestMapping("/")
 public class DataBaseController {
 
-    private final PersonsRepo repo;
+    private final PersonService service;
 
-    public DataBaseController(PersonsRepo repo) {
-        this.repo = repo;
+    public DataBaseController(PersonService service) {
+        this.service = service;
     }
 
-    @GetMapping("persons/by-city")
-    public List<Persons> getPersons(@RequestParam String city) {
-      return repo.getPersonsByCity(city);
+
+    @GetMapping("/persons/by-city")
+    private List<Persons> getPersons(@RequestParam String city) {
+        return service.getPersonsByCityOfLiving(city);
     }
 }

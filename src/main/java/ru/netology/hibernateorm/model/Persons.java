@@ -2,17 +2,17 @@ package ru.netology.hibernateorm.model;
 
 import lombok.*;
 
+import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import java.io.Serializable;
 
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-
 @Entity
-@Table(name = "PERSONS")
 public class Persons {
 
     @EmbeddedId
@@ -20,5 +20,5 @@ public class Persons {
 
     private String phone_number;
 
-    private String city_of_living;
+    private String city;
 }
