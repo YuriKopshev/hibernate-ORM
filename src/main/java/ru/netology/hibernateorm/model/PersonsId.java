@@ -10,6 +10,7 @@ import java.io.Serializable;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+
 @Embeddable
 public class PersonsId implements Serializable {
 
