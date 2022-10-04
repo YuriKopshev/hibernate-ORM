@@ -18,12 +18,6 @@ public interface PersonsRepository extends JpaRepository<Persons, PersonsId> {
 
     Optional<Persons>findPersonsById_NameAndId_Surname(String name,String surname);
 
-//    List<Persons> findAllByIdLessThanId_AgeOrderBy(int age);
-
-    @Query("select p from Persons p where p.id.age<:age")
-    List<Persons> findAllPersonsWhereAgeLess(@Param("age") int age, Sort sort);
-
-    //List<Persons>findByAgeLessThanOrderByAge(int age);
-
+    List<Persons> findByIdAgeLessThanOrderByIdAge(int age);
 
 }

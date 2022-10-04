@@ -21,3 +21,47 @@
 
 
 #### Проверяем методом-обработчиком GET-метода запроса с маппингом на endpoint /persons/by-city. В query params запроса приходит строковый параметр city, который передается дальше в репозиторий. То есть, метод обрабатывает звапрос типа:  localhost:8080/persons/by-city?city=Moscow. Контроллер должен будет возвращать всех людей, который он получит от репозитория.
+
+
+### Ветка jpa-repository
+
+* запуск приложения описан выше
+* предварительно создадим в query console таблицу и добвавим записи, например:
+  
+CREATE TABLE persons
+  (
+  phone_number VARCHAR(255) NULL,
+  city         VARCHAR(255) NULL,
+  name         VARCHAR(255) NOT NULL,
+  surname      VARCHAR(255) NOT NULL,
+  age          INT          NOT NULL,
+  CONSTRAINT pk_persons PRIMARY KEY (name, surname, age)
+  );
+
+insert into persons (age, name, surname, city, phone_number) VALUES (25,'Ivan','Kozlov','Moscow','232323');
+
+insert into persons (age, name, surname, city, phone_number) VALUES (38,'Yuri','Petrov','Moscow','23445566');
+
+insert into persons (age, name, surname, city, phone_number) VALUES (40,'Alex','Myrov','Saratov','234233566');
+
+* Далее делаем запрос в браузере по endpoint установленным в контроллере(DataBaseController):
+
+***Например:***
+
+http://localhost:8080/persons/by-city?city=Saratov
+
+http://localhost:8080/persons/by-age?age=40
+
+http://localhost:8080/persons/by-name-surname?name=yuri&surname=Petrov
+
+Ответ на запросы отображается в браузере в виде json объктов,например:
+
+{"id":{"name":"Alex",
+
+"surname":"Myrov",
+
+"age":40},
+
+"phone_number":"234233566",
+
+"city":"Saratov"}]
