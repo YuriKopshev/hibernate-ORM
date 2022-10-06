@@ -54,7 +54,7 @@ http://localhost:8080/persons/by-age?age=40
 
 http://localhost:8080/persons/by-name-surname?name=yuri&surname=Petrov
 
-Ответ на запросы отображается в браузере в виде json объктов,например:
+Ответ на запросы отображается в браузере в виде json объектов,например:
 
 {"id":{"name":"Alex",
 
@@ -65,3 +65,10 @@ http://localhost:8080/persons/by-name-surname?name=yuri&surname=Petrov
 "phone_number":"234233566",
 
 "city":"Saratov"}]
+
+### Ветка spring-security
+
+* Вся логика прописана в конфигурационном классе SecurityConfig в пакете config, который помечен аннотацией @Configuration 
+* По endpoint "/persons/by-city" доступ осущетсвляется без авторизации 
+* По остальным endpoint по логину и паролю через стандартную форму авторизации(только для пользователей с ролями:"WHITE").
+* чтобы разлогиниться вводим в адресной строке браузера http://localhost:8080/logout 
