@@ -71,4 +71,14 @@ http://localhost:8080/persons/by-name-surname?name=yuri&surname=Petrov
 * Вся логика прописана в конфигурационном классе SecurityConfig в пакете config, который помечен аннотацией @Configuration 
 * По endpoint "/persons/by-city" доступ осущетсвляется без авторизации 
 * По остальным endpoint по логину и паролю через стандартную форму авторизации(только для пользователей с ролями:"WHITE").
-* чтобы разлогиниться вводим в адресной строке браузера http://localhost:8080/logout 
+* чтобы разлогиниться вводим в адресной строке браузера http://localhost:8080/logout
+
+### Ветка spring-security-oauth2
+
+**Создан новый контроллер MyNewController в котором:**
+
+* метод private String hello() возвращает значения только для пользователей с ролью "READ"(используйте @Secured)
+* метод private String edit() возвращает значения только для пользователей с ролью "WRITE"(используйте @RolesAllowed)
+* метод private String dataAccess() возвращает значения, если у пользователя есть хотя бы одна из ролей из "WRITE", "DELETE"(использована аннотация @PreAuthorize)
+* метод public String myAccount(String username)  который принимает в качестве query параметра имя пользователя(username), и возвращает значения только если у пользователя username совпадает с именем пользователя в вашем объекте Authentication, 
+который Spring security сохраняет в SecurityContextHolder после успешной аутентификации.
